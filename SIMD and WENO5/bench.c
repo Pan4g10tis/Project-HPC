@@ -83,10 +83,33 @@ void benchmark(int argc, char *argv[], const int NENTRIES_, const int NTIMES, co
 	float * const result = myalloc(NENTRIES, verbose);
 
 	weno_minus_reference(a, b, c, d, e, gold, NENTRIES);
-	weno_minus_reference(a, b, c, d, e, result, NENTRIES);
+		//TIMER START
+	double start = get_wtime();
 
-	const double tol = 1e-5;
-	printf("minus: verifying accuracy with tolerance %.5e...", tol);
+	for(int t=0; t<NTIMES; ++t) {
+        #if defined(VERSION_REF)
+            weno_minus_reference(a, b, c, d, e, result, NENTRIES);
+        #elif defined(VERSION_OMP)
+            weno_minus_omp(a, b, c, d, e, result, NENTRIES);
+        #elif defined(VERSION_SSE)
+            weno_minus_sse(a, b, c, d, e, result, NENTRIES);
+        #elif defined(VERSION_AVX)
+            weno_minus_avx(a, b, c, d, e, result, NENTRIES);
+        #endif
+    }
+
+	double end = get_wtime();
+	double seconds = end - start;
+
+	// 88 FLOPs per point is a standard estimate for WENO5
+	double num_flops = 88.0 * (double)NENTRIES * (double)NTIMES;
+	double gflops = num_flops / seconds / 1e9;
+
+	printf("Time: %.4f s | Throughput: %.2f GFLOP/s\n", seconds, gflops);
+	//TIMER END
+
+	const double tol = 1e-4;
+	printf("minus: verifying accuracy with tolerance %.4e...", tol);
 	check_error(tol, gold, result, NENTRIES);
 	printf("passed!\n");
 
@@ -102,7 +125,7 @@ void benchmark(int argc, char *argv[], const int NENTRIES_, const int NTIMES, co
 int main (int argc, char *  argv[])
 {
 	printf("Hello, weno benchmark!\n");
-	const int debug = 1;
+	const int debug = 0;
 
 	if (debug)
 	{
