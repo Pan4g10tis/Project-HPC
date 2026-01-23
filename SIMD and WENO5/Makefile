@@ -22,3 +22,21 @@ bench_avx: bench.c weno.h
 
 clean:
 	rm -f bench_ref bench_omp bench_sse bench_avx
+
+
+# Run all benchmarks
+run_all: all
+	@echo "--------------------------------------"
+	@echo ">>> Running REFERENCE Baseline..."
+	@./bench_ref
+	@echo "--------------------------------------"
+	@echo ">>> Running OPENMP Implementation..."
+	@./bench_omp
+	@echo "--------------------------------------"
+	@echo ">>> Running SSE Implementation..."
+	@./bench_sse
+	@echo "--------------------------------------"
+	@echo ">>> Running AVX Implementation..."
+	@./bench_avx
+	@echo "--------------------------------------"
+	@echo ">>> DONE."
