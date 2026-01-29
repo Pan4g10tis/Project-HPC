@@ -64,7 +64,7 @@ def run_trial(C, trial_id):
         penalty="l1",
         solver="saga",      
         max_iter=3000,
-        n_jobs=1,           # Use 1 job per process
+        n_jobs=1,
         random_state=42
     )
 
