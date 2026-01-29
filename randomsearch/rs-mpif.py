@@ -41,12 +41,7 @@ X_val = scaler.transform(X_val)
 # 1. Worker function for a single HPO trial
 #    Data is now accessed from the module's global scope.
 # -------------------------------------------------------------
-def train_and_evaluate(C, trial_id):
-    """
-    Trains a Logistic Regression model for a given C and evaluates it.
-    Data is accessed globally. Only C and trial_id are passed as arguments.
-    """
-    
+def train_and_evaluate(C, trial_id):    
     # Access the globally defined data arrays
     global X_train, y_train, X_val, y_val
     
