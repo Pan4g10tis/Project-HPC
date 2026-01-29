@@ -87,7 +87,6 @@ if __name__ == "__main__":
         
         all_futures = {}
         
-        # --- Timing Start ---
         start = time.time()
     
     # Use MPIPoolExecutor. This block manages communication between master and workers.
@@ -117,7 +116,6 @@ if __name__ == "__main__":
                 except Exception as e:
                     print(f"Trial {all_futures[future]:02d} failed with error: {e}")
                     
-            # --- Timing End and Calculation ---
                 
             # -----------------------------
             # 4. Best C
