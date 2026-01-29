@@ -25,7 +25,7 @@ X, y = make_classification(
     class_sep=1.2,
     flip_y=0.08,
     weights=[0.5, 0.5],
-    random_state=42, # CRUCIAL: Ensures all processes generate identical data
+    random_state=42,
 )
 
 X_train, X_val, y_train, y_val = train_test_split(
