@@ -73,7 +73,7 @@ if __name__ == "__main__":
     C_values = [10 ** rng.uniform(-5, -1) for _ in range(n_trials)]
     
     # Use ProcessPoolExecutor for true parallelism
-    MAX_WORKERS = 4 # Adjust based on your CPU core count
+    MAX_WORKERS = 4
     
     all_futures = {}
     start = time.time()
