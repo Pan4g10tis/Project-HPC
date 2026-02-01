@@ -154,12 +154,9 @@ if __name__ == "__main__":
         final_results = [item for sublist in all_results_list_of_lists for item in sublist]
                 
         # 4. Best C
-        if final_results:
-            best_C, best_acc, best_trial_id = max(final_results, key=lambda t: t[1])
-            print("\n--- Best result ---")
-            print(f"Trial {best_trial_id:02d}: C={best_C:.3e}, acc={best_acc:.4f}")
-        else:
-            print("\nNo results found.")
+        best_C, best_acc, best_trial_id = max(final_results, key=lambda t: t[1])
+        print("\nBest result")
+        print(f"Trial {best_trial_id:02d}: C={best_C:.3e}, acc={best_acc:.4f}")
             
         print(f"{time.time()-start}s")
             
