@@ -70,11 +70,6 @@ int main() {
 
     printf("Starting cuBLAS computation...\n");
 
-    // ΣΗΜΑΝΤΙΚΟ: Η cuBLAS θεωρεί τους πίνακες Column-Major (Fortran style).
-    // Η C είναι Row-Major. Για να υπολογίσουμε C = A * B σωστά,
-    // ζητάμε από την cuBLAS να υπολογίσει B * A.
-    // (Μαθηματική ιδιότητα: (AB)^T = B^T A^T)
-
     // 1. Υπολογισμός AC -> Αποθήκευση στο E
     // cublasSgemm(handle, OP_N, OP_N, N, N, N, &alpha, C, N, A, N, &beta, E, N);
     cublasSgemm(handle, CUBLAS_OP_N, CUBLAS_OP_N, N, N, N, &alpha, d_C, N, d_A, N, &beta, d_E, N);
