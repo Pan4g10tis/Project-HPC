@@ -102,11 +102,9 @@ if __name__ == "__main__":
     # -----------------------------
     # 4. Best C
     # -----------------------------
-    if results:
-        best_C, best_acc = max(results, key=lambda t: t[1])
-        print("\nBest result")
-        print(f"C={best_C:.3e}, acc={best_acc:.4f}")
-    else:
-        print("\nNo results found.")
+
+    best_C, best_acc = max(results, key=lambda t: t[1])
+    print("\nBest result")
+    print(f"C={best_C:.3e}, acc={best_acc:.4f}")
         
     print(f"{time.time() - start}s")
