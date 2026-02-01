@@ -104,7 +104,7 @@ if __name__ == "__main__":
     # -----------------------------
     if results:
         best_C, best_acc = max(results, key=lambda t: t[1])
-        print("\n--- Best result ---")
+        print("\nBest result")
         print(f"C={best_C:.3e}, acc={best_acc:.4f}")
     else:
         print("\nNo results found.")
